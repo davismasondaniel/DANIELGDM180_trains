@@ -1,7 +1,8 @@
 CreateThread(function()
-SwitchTrainTrack(0, true) -- Setting the Main train track(s) around LS and towards Sandy Shores active
-SwitchTrainTrack(3, true) -- Setting the Metro tracks active
-SetTrainTrackSpawnFrequency(0, 120000) -- The Train spawn frequency set for the game engine
-SetTrainTrackSpawnFrequency(3, 120000) -- The Metro spawn frequency set for the game engine
-SetRandomTrains(true) -- Telling the game we want to use randomly spawned trains
+    for trackId, track in pairs(Config.Tracks) do
+        SwitchTrainTrack(trackId, track.enabled)
+        SetTrainTrackSpawnFrequency(trackId, track.spawnFrequency)
+    end
+
+    SetRandomTrains(Config.RandomTrains)
 end)
